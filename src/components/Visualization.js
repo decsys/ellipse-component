@@ -37,35 +37,26 @@ const Visualization = ({ params, values }) => {
   ];
 
   return (
-    <>
-      <ul>
-        {Object.keys(data).map(x => (
-          <li>
-            {data[x].x}, {data[x].y}
-          </li>
-        ))}
-      </ul>
-      <VictoryChart
-        minDomain={{ x: 0, y: 0 }}
-        maxDomain={{
-          x: params.barMaxValue,
-          y: Math.max(...data.map(d => d.y))
+    <VictoryChart
+      minDomain={{ x: 0, y: 0 }}
+      maxDomain={{
+        x: params.barMaxValue,
+        y: Math.max(...data.map(d => d.y))
+      }}
+    >
+      <VictoryAxis label="Participants %" dependentAxis />
+      <VictoryAxis label="Scale Value" />
+      <VictoryLine data={data} />
+      <VictoryLine
+        data={centroid}
+        style={{
+          data: { stroke: "red" },
+          labels: { angle: -90, fill: "red", fontSize: 16 }
         }}
-      >
-        <VictoryAxis label="Participants %" dependentAxis />
-        <VictoryAxis label="Scale Value" />
-        <VictoryLine data={data} />
-        <VictoryLine
-          data={centroid}
-          style={{
-            data: { stroke: "red" },
-            labels: { angle: -90, fill: "red", fontSize: 16 }
-          }}
-          labels={["Centroid"]}
-          labelComponent={<VictoryLabel y={100} />}
-        />
-      </VictoryChart>
-    </>
+        labels={["Centroid"]}
+        labelComponent={<VictoryLabel y={100} />}
+      />
+    </VictoryChart>
   );
 };
 
