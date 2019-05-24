@@ -1,9 +1,10 @@
 import React from "react";
 import { VictoryLabel, VictoryChart, VictoryAxis, VictoryLine } from "victory";
 
-const Visualization = ({ params, iaa }) => {
-  const tiny = 1e-10;
-  const reducer = (data, x, i, a) => {
+const tiny = 1e-10;
+
+const Visualization = ({ barMaxValue, iaa }) => {
+  const reducer = (data, x) => {
     const lastY = iaa.membership(x - tiny) * 100;
     const y = iaa.membership(x) * 100;
     const nextY = iaa.membership(x + tiny) * 100;
@@ -25,7 +26,7 @@ const Visualization = ({ params, iaa }) => {
     <VictoryChart
       minDomain={{ x: 0, y: 0 }}
       maxDomain={{
-        x: params.barMaxValue + params.barMaxValue * 0.1,
+        x: barMaxValue + barMaxValue * 0.1,
         y: maxY + maxY * 0.1
       }}
     >
@@ -43,7 +44,7 @@ const Visualization = ({ params, iaa }) => {
           labels: { angle: -90, fill: "red", fontSize: 16 }
         }}
         labels={["Centroid"]}
-        labelComponent={<VictoryLabel y={100} />}
+        labelComponent={<VictoryLabel y={150} />}
       />
     </VictoryChart>
   );
