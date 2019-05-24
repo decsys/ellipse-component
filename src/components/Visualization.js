@@ -1,14 +1,7 @@
 import React from "react";
-import IntervalAgreementApproach from "@decsys/iaa";
 import { VictoryLabel, VictoryChart, VictoryAxis, VictoryLine } from "victory";
 
-const Visualization = ({ params, values }) => {
-  // add all our results to an iaa class
-  const iaa = new IntervalAgreementApproach();
-  for (const interval of values) iaa.addInterval(interval);
-
-  // We don't sample discretely across the whole range;
-  // rather we use each unique result point to plot our results
+const Visualization = ({ params, iaa }) => {
   const tiny = 1e-10;
   const reducer = (data, x, i, a) => {
     const lastY = iaa.membership(x - tiny) * 100;
