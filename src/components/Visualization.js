@@ -1,12 +1,6 @@
 import React from "react";
 import IntervalAgreementApproach from "@decsys/iaa";
-import {
-  VictoryLabel,
-  VictoryChart,
-  VictoryAxis,
-  VictoryLine,
-  VictoryScatter
-} from "victory";
+import { VictoryLabel, VictoryChart, VictoryAxis, VictoryLine } from "victory";
 
 const Visualization = ({ params, values }) => {
   // add all our results to an iaa class
@@ -29,22 +23,24 @@ const Visualization = ({ params, values }) => {
   };
   const data = iaa.intervals.singletonKeys.reduce(reducer, [{ x: 0, y: 0 }]);
 
+  const maxY = Math.max(...data.map(d => d.y));
+
   const centroidValue = iaa.centroid;
-  console.log(centroidValue);
-  const centroid = [
-    { x: centroidValue, y: 0 },
-    { x: centroidValue, y: iaa.height * 100 }
-  ];
+  const centroid = [{ x: centroidValue, y: 0 }, { x: centroidValue, y: maxY }];
 
   return (
     <VictoryChart
       minDomain={{ x: 0, y: 0 }}
       maxDomain={{
-        x: params.barMaxValue,
-        y: Math.max(...data.map(d => d.y))
+        x: params.barMaxValue + params.barMaxValue * 0.1,
+        y: maxY + maxY * 0.1
       }}
     >
-      <VictoryAxis label="Participants %" dependentAxis />
+      <VictoryAxis
+        label="% Participants"
+        dependentAxis
+        axisLabelComponent={<VictoryLabel x={20} />}
+      />
       <VictoryAxis label="Scale Value" />
       <VictoryLine data={data} />
       <VictoryLine

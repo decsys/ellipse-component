@@ -3,25 +3,34 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import Component from "./Component";
 
+const props = {
+  barLeftMargin: 10,
+  barTopMargin: 50,
+  barRightMargin: 10,
+  barThickness: 8,
+  barMaxValue: 100,
+  barMinValue: 0
+};
+
 const dummyEllipseResults = [
   {
-    minRangeValue: 10,
-    maxRangeValue: 32.337,
+    minRangeValue: 60,
+    maxRangeValue: 90,
     completed: true
   },
   {
-    minRangeValue: 20,
-    maxRangeValue: 63,
-    completed: true
-  },
-  {
-    minRangeValue: 35,
-    maxRangeValue: 100,
+    minRangeValue: 50,
+    maxRangeValue: 90,
     completed: true
   },
   {
     minRangeValue: 40,
-    maxRangeValue: 95,
+    maxRangeValue: 90,
+    completed: true
+  },
+  {
+    minRangeValue: 80,
+    maxRangeValue: 90,
     completed: true
   }
 ];
@@ -49,20 +58,15 @@ const actions = {
 };
 
 storiesOf("Component", module)
-  .add("Default", () => (
-    <Component
-      barLeftMargin={10}
-      barTopMargin={50}
-      barRightMargin={10}
-      barThickness={8}
-      barMaxValue={100}
-      barMinValue={0}
-      {...actions}
-    />
-  ))
+  .add("Default", () => <Component {...props} {...actions} />)
   .add(
     "Numeric Visualisation",
-    visualization(Component.stats(Component.defaultProps, dummyEllipseResults))
+    visualization(
+      Component.stats(
+        { ...Component.defaultProps, ...props },
+        dummyEllipseResults
+      )
+    )
   )
   .add(
     "Numeric stats",
