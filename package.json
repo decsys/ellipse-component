@@ -36,7 +36,7 @@
     "victory": "^32.2.3"
   },
   "dependencies": {
-    "@decsys/iaa": "^1.0.0-beta.2",
+    "@decsys/iaa": "^1.0.0-beta.4",
     "@decsys/param-types": "^0.3.1",
     "@decsys/rating-scales": "^0.8.0",
     "styled-icons": "^7.6.0"
