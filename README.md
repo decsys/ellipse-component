@@ -1,3 +1,7 @@
+![GitHub](https://img.shields.io/github/license/decsys/ellipse-component.svg)
+[![Build Status](https://dev.azure.com/UniversityOfNottingham/DECSYS/_apis/build/status/decsys.ellipse-component?branchName=master)](https://dev.azure.com/UniversityOfNottingham/DECSYS/_build/latest?definitionId=171&branchName=master)
+![GitHub release](https://img.shields.io/github/release/decsys/ellipse-component.svg)
+
 # DECSYS Ellipse Scale Component
 
 This is a component that allows a Survey Participant to provide a ranged answer on an Ellipse Scale.
