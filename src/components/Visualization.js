@@ -1,5 +1,11 @@
 import React from "react";
-import { VictoryLabel, VictoryChart, VictoryAxis, VictoryLine } from "victory";
+import {
+  VictoryLabel,
+  VictoryChart,
+  VictoryAxis,
+  VictoryLine,
+  VictoryPortal
+} from "victory";
 
 const tiny = 1e-10;
 
@@ -35,7 +41,12 @@ const Visualization = ({ barMaxValue, iaa }) => {
         dependentAxis
         axisLabelComponent={<VictoryLabel x={20} />}
       />
+      {/* We draw the x axis twice
+        * so we can fixed tick it at 0,
+        * and then auto tick the rest
+        */}
       <VictoryAxis label="Scale Value" />
+      <VictoryAxis tickValues={[0]} />
       <VictoryLine data={data} />
       <VictoryLine
         data={centroid}
