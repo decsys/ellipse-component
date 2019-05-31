@@ -3,6 +3,10 @@ import * as math from "mathjs";
 import IntervalAgreementApproach from "@decsys/iaa";
 import Visualization from "./components/Visualization";
 
+const fixedVal = 3;
+
+const fixed = (fn, ...args) => parseFloat(fn(...args).toFixed(fixedVal));
+
 const stats = (params, results) => {
   // break down the results in a bunch of different useful ways...
   const reducer = (a, { minRangeValue: min, maxRangeValue: max }) => {
@@ -34,19 +38,23 @@ const stats = (params, results) => {
       }
     ],
     stats: {
-      ["Left Endpoint - Mean, STD"]: `${math.mean(minValues)}, ${math.mean(
+      ["Left Endpoint - Mean, STD"]: `${fixed(math.mean, minValues)}, ${fixed(
+        math.mean,
         maxValues
       )}`,
-      ["Right Endpoint - Mean, STD"]: `${math.mean(maxValues)}, ${math.mean(
+      ["Right Endpoint - Mean, STD"]: `${fixed(math.mean, maxValues)}, ${fixed(
+        math.mean,
         maxValues
       )}`,
-      ["Size - Mean, STD"]: `${math.mean(intervalWidths)}, ${math.std(
+      ["Size - Mean, STD"]: `${fixed(math.mean, intervalWidths)}, ${fixed(
+        math.std,
         intervalWidths
       )}`,
-      ["Response - Min, Max"]: `${Math.min(...minValues)}, ${Math.max(
+      ["Response - Min, Max"]: `${fixed(Math.min, ...minValues)}, ${fixed(
+        Math.max,
         ...maxValues
       )}`,
-      ["Centroid"]: centroidValue
+      ["Centroid"]: fixed(args => args, centroidValue)
     }
   };
 };
