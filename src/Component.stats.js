@@ -34,12 +34,18 @@ const stats = (params, results) => {
       }
     ],
     stats: {
-      ["Mean Lower Bound"]: math.mean(minValues),
-      ["Mean Upper Bound"]: math.mean(maxValues),
-      ["Mean Interval Width"]: math.mean(intervalWidths),
-      ["Interval Width Standard Deviation"]: math.std(intervalWidths),
-      ["Lowest response"]: Math.min(...minValues),
-      ["Highest response"]: Math.max(...maxValues),
+      ["Left Endpoint - Mean, STD"]: `${math.mean(minValues)}, ${math.mean(
+        maxValues
+      )}`,
+      ["Right Endpoint - Mean, STD"]: `${math.mean(maxValues)}, ${math.mean(
+        maxValues
+      )}`,
+      ["Size - Mean, STD"]: `${math.mean(intervalWidths)}, ${math.std(
+        intervalWidths
+      )}`,
+      ["Response - Min, Max"]: `${Math.min(...minValues)}, ${Math.max(
+        ...maxValues
+      )}`,
       ["Centroid"]: centroidValue
     }
   };
