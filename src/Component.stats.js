@@ -4,7 +4,6 @@ import IntervalAgreementApproach from "@decsys/iaa";
 import Visualization from "./components/Visualization";
 
 const fixedVal = 3;
-
 const fixed = (fn, ...args) => parseFloat(fn(...args).toFixed(fixedVal));
 
 const stats = (params, results) => {
