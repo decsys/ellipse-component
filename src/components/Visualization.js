@@ -3,8 +3,7 @@ import {
   VictoryLabel,
   VictoryChart,
   VictoryAxis,
-  VictoryLine,
-  VictoryPortal
+  VictoryLine
 } from "victory";
 
 const tiny = 1e-10;
