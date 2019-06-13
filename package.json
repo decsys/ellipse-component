@@ -12,6 +12,10 @@
   },
   "author": "Jonathan Couldridge <jon@jon.gg>",
   "license": "AGPL-3.0-only",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/decsys/ellipse-component.git"
+  },
   "devDependencies": {
     "@babel/core": "^7.4.5",
     "@babel/preset-env": "^7.4.5",
